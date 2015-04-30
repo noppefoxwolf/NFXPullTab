@@ -118,6 +118,8 @@ typedef enum : NSInteger {
 -(void)setSelectedIndex:(int)index{
     if (_currentIndex>0) {
         [self hideContentController:_viewcontrollers[_currentIndex]];
+    } else if(index >= _viewcontrollers.count) { //Out of bounds crash fix.
+        return;
     }
     [self displayContentController:_viewcontrollers[index]];
     _currentIndex = index;
